@@ -10,38 +10,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 /** First screen of the application. Displayed after the application is created. */
 public class FirstScreen implements Screen {
-    private int countFramesAnimHero = 8;
 
     private Stage stage;
     private Viewport viewport;
 
     @Override
     public void show() {
-        // Animation for Hero
-        Texture[] textureHeroAnimStayRight, textureHeroAnimStayLeft,
-            textureHeroAnimWalkRight, textureHeroAnimWalkLeft;
 
-        textureHeroAnimStayRight = new Texture[countFramesAnimHero];
-        textureHeroAnimStayLeft = new Texture[countFramesAnimHero];
-        textureHeroAnimWalkLeft = new Texture[countFramesAnimHero];
-        textureHeroAnimWalkRight = new Texture[countFramesAnimHero];
-        for (int i = 0; i < countFramesAnimHero; i++){
-            textureHeroAnimStayLeft[i] = new Texture("hero_anim_left_stay/Sprite-000" +
-                (i + 1) + ".png");
-            textureHeroAnimStayRight[i] = new Texture("hero_anim_right_stay/Sprite-000" +
-                (i + 1) + ".png");
-            textureHeroAnimWalkRight[i] = new Texture("hero_anim_right_walk/Sprite-000" +
-                (i + 1) + ".png");
-            textureHeroAnimWalkLeft[i] = new Texture("hero_anim_left_walk/Sprite-000" +
-                (i + 1) + ".png");
-        }
-        // End Animation for Hero
+        Texture textureBlock = new Texture("block.jpeg");
 
         // Prepare your screen here.
         viewport = new FitViewport(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         stage = new Stage(viewport);
-        stage.addActor(new HeroActor(textureHeroAnimStayRight, textureHeroAnimStayLeft,
-            textureHeroAnimWalkRight, textureHeroAnimWalkLeft));
+        stage.addActor(new BlockActor(textureBlock, 0, 0));
+        stage.addActor(new BlockActor(textureBlock, 200, 100));
+        stage.addActor(new HeroActor());
     }
 
     @Override
@@ -50,7 +33,6 @@ public class FirstScreen implements Screen {
         // Draw your screen here. "delta" is the time since last render in seconds.
         stage.act();
         stage.draw();
-
     }
 
     @Override
